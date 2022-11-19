@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+/// <summary>
+/// Player‚ÌˆÚ“®‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+/// </summary>
+public class PlayerMove
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Player‚ÌˆÚ“®‚Ìˆ—
+    /// </summary>
+    /// <param name="rb"></param>
+    /// <param name="inputX"></param>
+    /// <param name="InputY"></param>
+    public void Move(Rigidbody2D rb, float moveSpeed,float inputX, float InputY)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rb.velocity = new Vector2(inputX, InputY) * moveSpeed;
     }
 }
