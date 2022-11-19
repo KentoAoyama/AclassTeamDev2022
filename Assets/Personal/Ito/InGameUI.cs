@@ -11,10 +11,6 @@ public class InGameUI : MonoBehaviour
     [SerializeField] Text _scoreText;
     [SerializeField] Text _timeMinuteText;
     [SerializeField] Text _timeSecondText;
-    private void Start()
-    {
-        _gameManager = FindObjectOfType<GameManager>();
-    }
     void Update()
     {
         TimeText();
