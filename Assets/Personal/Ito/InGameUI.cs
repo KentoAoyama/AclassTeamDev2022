@@ -7,24 +7,25 @@ using UnityEngine.UI;
 /// </summary>
 public class InGameUI : MonoBehaviour
 {
-    [SerializeField] GameManager _gameManager;
-    [SerializeField] Text _scoreText;
+    float _timer = GameManager.Timer;
+    float _count = GameManager._waveCenterCount;
+    [SerializeField] Text _waveText;
     [SerializeField] Text _timeMinuteText;
     [SerializeField] Text _timeSecondText;
     void Update()
     {
         TimeText();
-        ScoreText();
+        WaveText();
     }
     void TimeText()
     {
-        int minute = (int)_gameManager.Timer / 60;//•ª.time‚ð60‚ÅŠ„‚Á‚½’l.
-        int second = (int)_gameManager.Timer % 60;//•b.time‚ð60‚ÅŠ„‚Á‚½—]‚è.
+        int minute = (int)_timer / 60;//•ª.time‚ð60‚ÅŠ„‚Á‚½’l.
+        int second = (int)_timer % 60;//•b.time‚ð60‚ÅŠ„‚Á‚½—]‚è.
         _timeMinuteText.text = minute.ToString();
         _timeSecondText.text = second.ToString();
     }
-    void ScoreText()
+    void WaveText()
     {
-        _scoreText.text = _gameManager.WaveCenterCount.ToString();
+        _waveText.text = _count.ToString();
     }
 }
