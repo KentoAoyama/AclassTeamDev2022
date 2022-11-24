@@ -98,11 +98,12 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(inputX, InputY) * moveSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(_waveTagName)
             && !_isJumping
-            && !_isGodMode)
+            && !_isGodMode
+            && !_isGameOver)
         {
             _isGameOver = true;
 
