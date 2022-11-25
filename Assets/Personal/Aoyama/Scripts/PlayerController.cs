@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("接触するWaveオブジェクトのタグの名前")]
     [TagName, SerializeField] private string _waveTagName;
 
+    [Tooltip("死亡時に変化する色")]
+    [SerializeField] private Color _deathColor;
+
     [Tooltip("プレイヤーを無敵にするデバッグ用変数")]
     [SerializeField] private bool _isGodMode = false;
 
@@ -40,6 +43,14 @@ public class PlayerController : MonoBehaviour
     /// プレイヤーのRigidBody
     /// </summary>
     private Rigidbody2D _rb;
+    /// <summary>
+    /// プレイヤーのSpriteRenderer
+    /// </summary>
+    private SpriteRenderer _sr;
+    /// <summary>
+    /// プレイヤーのAudioSource
+    /// </summary>
+    private AudioSource _as;
 
     /// <summary>
     /// ジャンプを行った回数を表すプロパティ
@@ -53,6 +64,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
+        _as = GetComponent<AudioSource>();
 
         _isJump
             .Skip(1)
@@ -79,8 +92,9 @@ public class PlayerController : MonoBehaviour
         _isJumping = true;
         Debug.Log($"isJumping = {_isJumping}");
 
-        Sequence sequence = DOTween.Sequence();
+        _as.Play();
         float time = jumpTime / 2f;
+        Sequence sequence = DOTween.Sequence();
 
         sequence.Insert(0f, player.transform.DOScale(2f, time).SetEase(Ease.OutCubic));
         sequence.Insert(time, player.transform.DOScale(1f, time).SetEase(Ease.InCubic));
@@ -106,6 +120,7 @@ public class PlayerController : MonoBehaviour
             && !_isGameOver)
         {
             _isGameOver = true;
+            _sr.DOColor(_deathColor, 1f);
 
             Debug.Log("GameOver");
         }
