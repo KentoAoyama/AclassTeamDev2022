@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         sequence.Insert(0f, player.transform.DOScale(2f, time).SetEase(Ease.OutCubic));
         sequence.Insert(time, player.transform.DOScale(1f, time).SetEase(Ease.InCubic));
         sequence.OnComplete(() => _isJumping = false);
-        sequence.OnKill(() => Debug.Log($"isJumping = {_isJumping}"));
+        sequence.OnKill(() => _jumpCount++);
 
         sequence.Play();
     }

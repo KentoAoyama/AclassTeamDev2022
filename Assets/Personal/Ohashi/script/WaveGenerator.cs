@@ -26,7 +26,7 @@ public class WaveGenerator : MonoBehaviour
     }
     private void Update()
     {
-        if (_playerController.JumpCount < 0)
+        if (_playerController.JumpCount > 0)
         {
             RandomPos();
             PlayerTransformPos();
