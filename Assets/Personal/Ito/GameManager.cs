@@ -10,16 +10,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerController _player;
     [SerializeField] string _gameEndSceneName = "GameEnd";
     [SerializeField] FadeSystem _sceneFade;
+
+    bool _isFinish = false;
     private void Start()
     {
+        WaveCenterCount = 1;
+        Timer = 0;
+        Score = 0;
         _sceneFade.StartFadeIn();
         StartCoroutine(ScorePlus());
     }
     void Update()
     {
         TimerCount();
-        if (_player.IsGameOver)
+        if (_player.IsGameOver && !_isFinish)
         {
+            _isFinish = true;
             GameOver();
         }
     }
