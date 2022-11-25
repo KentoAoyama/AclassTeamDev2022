@@ -11,13 +11,14 @@ public class WaveCenter : MonoBehaviour
     private Animator _anim;
     private bool _isWave = false;
 
+
     private void Start()
     {
         _anim = GetComponent<Animator>();
     }
     private void Update()
     {
-        if(!_isWave)
+        if (!_isWave)
         {
             _isWave = true;
             StartCoroutine(Wave());
