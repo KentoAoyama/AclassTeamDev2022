@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static float Timer = 0;
     public static float Score = 0;
     [SerializeField] PlayerController _player;
+    [SerializeField] string _gameEndSceneName = "GameEnd";
     [SerializeField] FadeSystem _sceneFade;
     private void Start()
     {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
     void GameOver()
     {
-        _sceneFade.StartFadeOut("GameEnd");
+        _sceneFade.StartFadeOut(_gameEndSceneName);
     }
     public void WaveCenterCountPlus()
     {
