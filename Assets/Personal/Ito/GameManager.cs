@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public float WaveCenterCount => _waveCenterCount;
-    public static float _waveCenterCount;
-    public static float Timer;
+    public static float WaveCenterCount = 0;
+    public static float Timer = 0;
+    public static float Score = 0;
     [SerializeField] PlayerController _player;
     [SerializeField] FadeSystem _sceneFade;
     private void Start()
     {
         _sceneFade.StartFadeIn();
+        StartCoroutine(ScorePlus());
     }
     void Update()
     {
@@ -31,6 +32,12 @@ public class GameManager : MonoBehaviour
     }
     public void WaveCenterCountPlus()
     {
-        _waveCenterCount++;
+        WaveCenterCount++;
+    }
+    IEnumerator ScorePlus()
+    {
+        Score += WaveCenterCount;
+        yield return new WaitForSeconds(1);
+        StartCoroutine(ScorePlus());
     }
 }
