@@ -5,22 +5,29 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float WaveCenterCount => _waveCenterCount;
-    [SerializeField] private float _waveCenterCount;
-    public float Timer => _timer;//get‚¾‚¯‚ç‚µ‚¢
-    [SerializeField] private float _timer;
-    [SerializeField] GameObject _player;
-
+    public static float _waveCenterCount;
+    public static float Timer;
+    [SerializeField] PlayerController _player;
+    [SerializeField] FadeSystem _sceneFade;
     private void Start()
     {
-    
+        _sceneFade.StartFadeIn();
     }
     void Update()
     {
         TimerCount();
+        if (_player.IsGameOver)
+        {
+            GameOver();
+        }
     }
     void TimerCount()
     {
-        _timer += Time.deltaTime;
+        Timer += Time.deltaTime;
+    }
+    void GameOver()
+    {
+        _sceneFade.StartFadeOut("GameEnd");
     }
     public void WaveCenterCountPlus()
     {
