@@ -6,41 +6,30 @@ using UnityEngine.UI;
 public class GameEndUI : MonoBehaviour
 {
     float _timer = GameManager.Timer;
-    float _count = GameManager._waveCenterCount;
+    float _count = GameManager.WaveCenterCount;
+    float _score = GameManager.Score;
     [SerializeField] Text _waveCountText;
-    [SerializeField] Text _timeMinuteText;
-    [SerializeField] Text _timeSecondText;
+    [SerializeField] Text _timeText;
     [SerializeField] Text _scoreText;
-    [SerializeField] Text _text;
     void Start()
     {
-        Result();
-        //TimeText();
-        //WaveText();
-        //ScoreText();
+        TimeText();
+        WaveText();
+        ScoreText();
     }
-    void Result()
+    void TimeText()
     {
         int minute = (int)_timer / 60;//•ª.time‚ğ60‚ÅŠ„‚Á‚½’l.
         int second = (int)_timer % 60;//•b.time‚ğ60‚ÅŠ„‚Á‚½—]‚è.
-
-        _text.text = $"{minute}•ª {second}•b ~ {_count}ŒÂ = {(_count * _timer)}";
+        _timeText.text = $"{minute} m {second} s";
     }
-    //void TimeText()
-    //{
-    //    int minute = (int)_timer / 60;//•ª.time‚ğ60‚ÅŠ„‚Á‚½’l.
-    //    int second = (int)_timer % 60;//•b.time‚ğ60‚ÅŠ„‚Á‚½—]‚è.
-    //    _timeMinuteText.text = minute.ToString();
-    //    _timeSecondText.text = second.ToString();
-
-    //}
-    //void WaveText()
-    //{
-    //    _waveCountText.text = _count.ToString();
-    //}
-    //void ScoreText()
-    //{
-    //    _scoreText.text = (_count * _timer).ToString();
-    //}
+    void WaveText()
+    {
+        _waveCountText.text = _count.ToString();
+    }
+    void ScoreText()
+    {
+        _scoreText.text = _score.ToString();
+    }
 
 }
