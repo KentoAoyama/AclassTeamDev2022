@@ -109,7 +109,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move(Rigidbody2D rb, float moveSpeed, float inputX, float InputY)
     {
-        rb.velocity = new Vector2(inputX, InputY) * moveSpeed;
+        if (!_isGameOver)
+        {
+            rb.velocity = new Vector2(inputX, InputY) * moveSpeed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
